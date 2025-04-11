@@ -1,0 +1,195 @@
+PlanNet: Neural Network Floor Plan Generator
+===========================================
+
+Project Overview
+---------------
+PlanNet is a web application that uses AI to generate architectural floor plans. The project combines:
+- Deep Learning (GAN model)
+- Web Technologies (Flask + React)
+- Computer Graphics (floor plan visualization)
+
+Project Architecture
+------------------
+1. Backend Components (app.py):
+   - Flask web server
+   - API endpoints for floor plan generation
+   - Data processing and model integration
+
+2. Frontend Components (static_src/):
+   - React-based user interface
+   - Interactive graph editor
+   - Real-time visualization
+
+Core Features
+------------
+1. Room Types and Properties:
+   - Living room (Social spaces)
+   - Kitchen (Utility spaces)
+   - Bedroom (Private spaces)
+   - Bathroom (Utility spaces)
+   - Missing (Placeholder)
+   - Closet (Storage)
+   - Balcony (Outdoor spaces)
+   - Corridor (Circulation)
+   - Dining room (Social spaces)
+   - Laundry room (Utility spaces)
+
+2. Floor Plan Generation Process:
+   a. User Input:
+      - Draw room connections in graph editor
+      - Specify room types
+      - Set relationships between rooms
+   
+   b. Data Processing:
+      - Convert user input to tensors
+      - Generate floor plans using GAN
+      - Process and save results
+      - Create visualizations
+
+AI Model Architecture
+-------------------
+1. Generator Network:
+   - Input: 138-dimensional vector (128 noise + 10 room types)
+   - Initial linear layer expands to 16 channels
+   - Two upsampling blocks
+   - Two Contextual Message Passing (CMP) layers
+   - Decoder with three convolutional blocks
+   - Output: 1-channel floor plan mask
+
+2. Contextual Message Passing (CMP):
+   - Handles room connections
+   - Processes positive and negative edges
+   - Maintains spatial relationships
+   - Updates node features based on connections
+
+Project Setup and Dependencies
+---------------------------
+1. Python Dependencies (requirements.txt):
+   - Flask: Web framework
+   - PyTorch: Deep learning
+   - NumPy: Numerical computations
+   - Pillow: Image processing
+
+2. JavaScript Dependencies (package.json):
+   - React: UI framework
+   - React DOM: React rendering
+   - Components: UI components
+   - Graph Editor: Interactive graph editing
+
+Development Workflow
+-----------------
+1. Building the Project:
+   # Install dependencies
+   npm install
+   pip install -r requirements.txt
+
+   # Build frontend
+   npm run build
+
+   # Run development server
+   python app.py --port 5001
+
+2. Project Structure:
+   project/
+   ├── app.py              # Flask application
+   ├── house_gan/          # AI model implementation
+   ├── static_src/         # React frontend source
+   ├── static/            # Compiled frontend assets
+   ├── templates/         # HTML templates
+   └── requirements.txt   # Python dependencies
+
+Key Features
+----------
+1. Interactive Graph Editor:
+   - Drag-and-drop room creation
+   - Room connection management
+   - Room type selection
+   - Real-time validation
+
+2. Floor Plan Generation:
+   - Multiple variations
+   - Room size optimization
+   - Spatial relationship preservation
+   - Architectural constraints
+
+3. Visualization:
+   - 2D floor plan rendering
+   - Color-coded room types
+   - Interactive selection
+   - Export capabilities
+
+Technical Implementation Details
+----------------------------
+1. Data Flow:
+   a. User creates room graph
+   b. Graph converted to tensors
+   c. GAN generates floor plans
+   d. Results processed and displayed
+   e. User selects preferred layout
+
+2. Model Training:
+   - Trained on real floor plan dataset
+   - Uses Wasserstein GAN with gradient penalty
+   - Optimized for architectural constraints
+   - Checkpoint saved at 500,000 iterations
+
+Usage Instructions
+---------------
+1. Starting the Application:
+   - Install all dependencies
+   - Build the frontend
+   - Start the Flask server
+   - Access the application at http://localhost:5001
+
+2. Creating Floor Plans:
+   - Add rooms using the graph editor
+   - Connect rooms to define relationships
+   - Select room types
+   - Generate floor plans
+   - Select preferred layout
+
+3. Exporting Results:
+   - Save generated floor plans
+   - Export to various formats
+   - Share with team members
+
+Troubleshooting
+-------------
+1. Common Issues:
+   - Missing dependencies
+   - Build errors
+   - Model loading failures
+   - API connection issues
+
+2. Solutions:
+   - Check dependency versions
+   - Verify build process
+   - Ensure model files are present
+   - Check network connectivity
+
+Future Improvements
+----------------
+1. Planned Features:
+   - 3D visualization
+   - More room types
+   - Advanced constraints
+   - Export to CAD formats
+
+2. Performance Optimizations:
+   - Faster generation
+   - Better quality
+   - More variations
+   - Real-time updates
+
+License and Credits
+----------------
+- Project licensed under MIT License
+- Based on research from [citation needed]
+- Developed by [team/organization name]
+
+Contact Information
+----------------
+For support and inquiries:
+- Email: [contact email]
+- GitHub: [repository URL]
+- Documentation: [docs URL] 
